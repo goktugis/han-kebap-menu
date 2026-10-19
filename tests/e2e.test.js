@@ -187,7 +187,7 @@ let BASE;
   if (!exe) { console.error("Tarayıcı bulunamadı. BROWSER env ile yol ver."); process.exit(1); }
   const server = createServer();
   await new Promise((r) => server.listen(0, r));
-  BASE = "http://localhost:" + server.address().port + "/";
+  BASE = process.env.BASE_URL || "http://localhost:" + server.address().port + "/";
   const browser = await chromium.launch({ executablePath: exe, headless: true });
   const iphone = { viewport: { width: 375, height: 812 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
   const small = { viewport: { width: 320, height: 640 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true };
